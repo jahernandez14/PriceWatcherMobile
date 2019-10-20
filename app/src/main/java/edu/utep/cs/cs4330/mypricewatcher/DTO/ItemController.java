@@ -15,32 +15,31 @@ public class ItemController {
     private MainActivity view;
     private PriceFinder priceFinder;
 
-    /**
-     *
-     * @param model
-     * @param view
-     */
+
     public ItemController(ItemModel model, MainActivity view){
         this.model = model;
         this.view = view;
         this.priceFinder = new PriceFinder();
     }
 
-    public String getURL(){
-        return model.getItemURL();
-    }
-
+    //We are going to use price Finder to update all the prices of the items
     public void updatePrice(){
-        model.setInitialPrice(model.getCurrentPrice());
-        model.updatePrice(priceFinder.createRandom());
+        for(int i = 0; i < model.getItemSize(); i++){
+            model.updatePrice(i, priceFinder.createRandom());
+        }
     }
 
-    public void updateChange(){//change attempted to calculate price change
-        model.getPriceChange();
+    //Adding item to the model
+    public void addItem(Item item){
+        model.addItem(item);
+        updateView();
     }
 
     public void updateView(){
-        view.displayItem(model.getName(), model.getInitPrice(), model.getItemURL(), model.getCurrPriceChange(), model.getCurrentPrice());
+       for(int i = 0; i < model.getItemSize(); i ++){
+           Item item = model.getItem(i);
+           view.displayItem(item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChage(), item.getCurrentPrice());
+       }
     }
 
 }

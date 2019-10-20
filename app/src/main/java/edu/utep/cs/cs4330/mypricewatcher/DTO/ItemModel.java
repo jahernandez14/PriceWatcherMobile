@@ -5,69 +5,46 @@ package edu.utep.cs.cs4330.mypricewatcher.DTO;
  * @version 1.0
  */
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Class created to retrieve all item information to implement MVC
  */
 public class ItemModel {
-    private Item item;
+    private List<Item> items;
 
-    public ItemModel(Item item){
-        this.item = item;
+    public ItemModel(){
+        this.items = new ArrayList<>();
     }
 
-    public ItemModel() {
-
+    public void addItem(Item item){
+        this.items.add(item);
     }
 
-    public void setItem(Item item){
-        this.item = item;
+    public Iterator<Item> getItems(){
+        return items.iterator();
     }
 
-    public double getCurrentPrice(){
-        return item.getCurrentPrice();
-    }
-
-    public void setInitialPrice(double newPrice){
-        this.item.initialPrice = newPrice;
-    }
-
-
-
-    public String getName(){
-        return this.item.name;
-    }
-
-    public double getPrice(){
-        return this.item.currentPrice;
-    }
-
-    public String getItemURL(){
-        return this.item.url;
-    }
-
-
-    public double getPriceChange(){
-        return this.item.priceChage;
-    }
-
-    public double getInitPrice(){
-        return this.item.initialPrice;
-    }
-
-    public double getCurrPriceChange(){
-        double change =  (((item.currentPrice - item.initialPrice) / item.initialPrice) * 100);
-        item.priceChage = change;
-        return this.item.priceChage;
-    }
-
-    /**
-     *
-     * @param newPrice
-     */
-    public void updatePrice(double newPrice){
-        if(this.item != null){
-            this.item.setCurrentPrice(newPrice);
+    public void calculateCurrentPriceChange(){
+        for(Item item : items){
+            double change =  (((item.currentPrice - item.initialPrice) / item.initialPrice) * 100);
+            item.setPriceChage(change);
         }
+    }
+
+    public int getItemSize(){
+        return items.size();
+    }
+
+    public void updatePrice(int index, double newPrice){
+        Item item = items.get(index);
+        item.setCurrentPrice(newPrice);
+    }
+
+    public Item getItem(int index){
+        return items.get(index);
     }
 
 }
