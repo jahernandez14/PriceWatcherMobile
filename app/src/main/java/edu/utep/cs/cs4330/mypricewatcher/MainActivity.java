@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
      * @param currPrice
      */
     public void displayItem(String name, double iniPrice, String url, double changePrice, double currPrice){
-        listViewAdapter.clear();
+//        listViewAdapter.clear();
         listViewAdapter.add(new Item(name, url, iniPrice, currPrice, changePrice));
 //        listViewAdapter.sort(new Comparator<Item>() {
 //            @Override
