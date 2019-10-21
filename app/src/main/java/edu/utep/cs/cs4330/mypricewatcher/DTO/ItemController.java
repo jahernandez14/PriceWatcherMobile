@@ -25,8 +25,11 @@ public class ItemController {
     }
 
     //We are going to use price Finder to update all the prices of the items
-    public void updatePrice(Item item){
-        model.updatePrice(item);
+    public void updatePrice(){
+        for(int i = 0; i < model.getItemSize(); i++){
+            model.updatePrice(i, priceFinder.createRandom());
+        }
+        Log.d("TESTING", "update price method called " + priceFinder.createRandom());
         updateView();
     }
 
@@ -36,7 +39,8 @@ public class ItemController {
         updateView();
     }
 
-    public void editItem(Item item, String name){
+    public void editItem(int index, String name){
+        Item item = model.getItem(index);
         item.setName(name);
         updateView();
     }

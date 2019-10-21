@@ -24,6 +24,7 @@ import java.util.Comparator;
 import edu.utep.cs.cs4330.mypricewatcher.DTO.Item;
 import edu.utep.cs.cs4330.mypricewatcher.DTO.ItemController;
 import edu.utep.cs.cs4330.mypricewatcher.DTO.ItemModel;
+import edu.utep.cs.cs4330.mypricewatcher.DTO.PriceFinder;
 
 /**
  * Activity class created to serve as the main view of the pricewatcher application
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private CustomAdapter listViewAdapter;
     private CustomDialog dialog;
+    private EditDialog editDialog;
+
 
     /**
      *
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         listViewAdapter = new CustomAdapter(this, android.R.layout.simple_list_item_1, new ArrayList<Item>());
         this.dialog = new CustomDialog(this, itemController);
+        this.editDialog = new EditDialog(this, itemController);
 
         listView = findViewById(R.id.list);
         listView.setAdapter(listViewAdapter);
@@ -77,29 +81,18 @@ public class MainActivity extends AppCompatActivity {
                                         return true;
                                     case R.id.popURL:
                                         Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
-
                                         intent.putExtra("url", selectedItem.getUrl());
                                         startActivity(intent);
-
                                         return true;
                                     case R.id.popEdit:
-
+                                        editDialog.show();
                                         return true;
                                     case R.id.popupdate:
-                                        itemController.updatePrice(selectedItem);
                                     default:
                                         return false;
                                 }
                                 });
-
-
-                //Item selectedItem = listViewAdapter.getItem(i);
                 /*
-
-                Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
-
-                intent.putExtra("url", selectedItem.getUrl());
-                startActivity(intent);
 
                 Log.d("TESTING", "Item name selected: "+selectedItem.priceChage);
                 */

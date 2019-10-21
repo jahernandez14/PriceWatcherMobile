@@ -11,14 +11,14 @@ import android.widget.TextView;
 import edu.utep.cs.cs4330.mypricewatcher.DTO.Item;
 import edu.utep.cs.cs4330.mypricewatcher.DTO.ItemController;
 
-public class CustomDialog extends Dialog implements View.OnClickListener {
+public class EditDialog extends Dialog implements View.OnClickListener {
 
     private Activity activity;
     private TextView itemName, itemInitPrice, itemUrl;
     private Button cancelBtn, addBtn;
     private ItemController itemController;
 
-    public CustomDialog(Activity activity, ItemController itemController) {
+    public EditDialog(Activity activity, ItemController itemController) {
         super(activity);
         this.activity = activity;
         this.itemController = itemController;
@@ -48,7 +48,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
             case R.id.AddButton:
                 //we are going to add the element to the listview
                 double price = Double.valueOf(String.valueOf(itemInitPrice.getText()));
-                Item item = new Item(itemName.getText().toString(), "https://www." +
+                Item item = new Item(itemName.getText().toString(),
                         itemUrl.getText().toString(),
                         price,
                         price, 0.0);
