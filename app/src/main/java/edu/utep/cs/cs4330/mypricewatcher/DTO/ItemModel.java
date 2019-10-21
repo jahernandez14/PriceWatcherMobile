@@ -43,6 +43,14 @@ public class ItemModel {
         item.setCurrentPrice(newPrice);
     }
 
+    public void removeItem(Item item)
+    {
+        for(int i = 0; i < items.size(); i++){
+            if(item.name == items.get(i).name){
+                items.remove(i);
+            }
+        }
+    }
     public Item getItem(int index){
         return items.get(index);
     }

@@ -36,11 +36,17 @@ public class CustomAdapter extends ArrayAdapter<Item> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_layout, parent, false);
         }
 
-        TextView title = convertView.findViewById(R.id.title);
-        TextView subTitle = convertView.findViewById(R.id.subTitle);
+        TextView nameList = convertView.findViewById(R.id.nameList);
+        TextView urlList = convertView.findViewById(R.id.urlList);
+        TextView initialPriceList = convertView.findViewById(R.id.initialPriceList);
+        TextView currentPriceList = convertView.findViewById(R.id.currentPriceList);
+        TextView priceChangeList = convertView.findViewById(R.id.priceChangeList);
 
-        title.setText(item.name);
-        subTitle.setText(String.valueOf(item.currentPrice));
+        nameList.setText(item.name);
+        urlList.setText(String.valueOf(item.url));
+        initialPriceList.setText(String.valueOf(item.initialPrice));
+        currentPriceList.setText(String.valueOf(item.currentPrice));
+        priceChangeList.setText(String.valueOf(item.priceChage));
 
         return convertView;
     }
