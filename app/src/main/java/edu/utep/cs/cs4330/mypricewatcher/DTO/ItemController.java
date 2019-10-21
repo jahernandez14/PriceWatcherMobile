@@ -36,6 +36,7 @@ public class ItemController {
     }
 
     public void updateView(){
+        view.clearItems();
        for(int i = 0; i < model.getItemSize(); i ++){
            Item item = model.getItem(i);
            view.displayItem(item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChage(), item.getCurrentPrice());

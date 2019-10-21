@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        itemController.addItem(new Item("PS4 Pro", "https://www.bestbuy.com/site/sony-playstation-4-pro-console-jet-black/5388900.p?skuId=5388900", 400, 0, 0));
+        //itemController.addItem(new Item("PS4 Pro", "https://www.bestbuy.com/site/sony-playstation-4-pro-console-jet-black/5388900.p?skuId=5388900", 400, 0, 0));
         itemController.updateView();
     }
 
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
      * @param currPrice
      */
     public void displayItem(String name, double iniPrice, String url, double changePrice, double currPrice){
-//        listViewAdapter.clear();
         listViewAdapter.add(new Item(name, url, iniPrice, currPrice, changePrice));
 //        listViewAdapter.sort(new Comparator<Item>() {
 //            @Override
@@ -81,5 +80,9 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         listViewAdapter.notifyDataSetChanged();
+    }
+
+    public void clearItems(){
+        listViewAdapter.clear();
     }
 }
