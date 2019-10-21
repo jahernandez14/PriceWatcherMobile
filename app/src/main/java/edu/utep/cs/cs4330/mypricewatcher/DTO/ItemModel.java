@@ -5,6 +5,8 @@ package edu.utep.cs.cs4330.mypricewatcher.DTO;
  * @version 1.0
  */
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,6 +43,7 @@ public class ItemModel {
     public void updatePrice(int index, double newPrice){
         Item item = items.get(index);
         item.setCurrentPrice(newPrice);
+        Log.d("TESTING", "Item name selected: " + item.getCurrentPrice());
     }
 
     public void removeItem(Item item)

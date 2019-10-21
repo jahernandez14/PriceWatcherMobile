@@ -38,7 +38,7 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif"
-        android:hint="URL Exclude https://www"/>
+        android:hint="URL Exclude https://"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

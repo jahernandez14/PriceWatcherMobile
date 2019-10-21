@@ -48,7 +48,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
             case R.id.AddButton:
                 //we are going to add the element to the listview
                 double price = Double.valueOf(String.valueOf(itemInitPrice.getText()));
-                Item item = new Item(itemName.getText().toString(), "https://www." +
+                Item item = new Item(itemName.getText().toString(), "https://" +
                         itemUrl.getText().toString(),
                         price,
                         price, 0.0);

@@ -88,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
                                         editDialog.show();
                                         return true;
                                     case R.id.popupdate:
+                                        itemController.updatePrice( i);
                                     default:
                                         return false;
                                 }
                                 });
                 /*
-
                 Log.d("TESTING", "Item name selected: "+selectedItem.priceChage);
                 */
 
