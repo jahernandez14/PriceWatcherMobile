@@ -5,6 +5,8 @@ package edu.utep.cs.cs4330.mypricewatcher.DTO;
  * @version 1.0
  */
 
+import android.util.Log;
+
 import edu.utep.cs.cs4330.mypricewatcher.MainActivity;
 
 /**
@@ -23,10 +25,9 @@ public class ItemController {
     }
 
     //We are going to use price Finder to update all the prices of the items
-    public void updatePrice(){
-        for(int i = 0; i < model.getItemSize(); i++){
-            model.updatePrice(i, priceFinder.createRandom());
-        }
+    public void updatePrice(Item item){
+        model.updatePrice(item);
+        updateView();
     }
 
     //Adding item to the model
@@ -35,8 +36,14 @@ public class ItemController {
         updateView();
     }
 
+    public void editItem(Item item, String name){
+        item.setName(name);
+        updateView();
+    }
+
     public void removeItem(Item item){
         model.removeItem(item);
+        updateView();
     }
 
     public void updateView(){

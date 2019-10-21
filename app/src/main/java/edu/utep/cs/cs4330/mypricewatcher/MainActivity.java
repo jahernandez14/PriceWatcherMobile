@@ -6,11 +6,13 @@ package edu.utep.cs.cs4330.mypricewatcher;
  */
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -63,14 +65,52 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Item selectedItem = listViewAdapter.getItem(i);
-                Log.d("TESTING", "Look in the logs, when item is clicked this is called: "+selectedItem.name);
+                    Item selectedItem = listViewAdapter.getItem(i);
+                    PopupMenu pop = new PopupMenu(MainActivity.this, view);
+                    pop.inflate(R.menu.menu);
+                    pop.show();
+
+                    pop.setOnMenuItemClickListener(item -> {
+                                switch (item.getItemId()) {
+                                    case R.id.popDelete:
+                                        itemController.removeItem(selectedItem);
+                                        return true;
+                                    case R.id.popURL:
+                                        Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+
+                                        intent.putExtra("url", selectedItem.getUrl());
+                                        startActivity(intent);
+
+                                        return true;
+                                    case R.id.popEdit:
+
+                                        return true;
+                                    case R.id.popupdate:
+                                        itemController.updatePrice(selectedItem);
+                                    default:
+                                        return false;
+                                }
+                                });
+
+
+                //Item selectedItem = listViewAdapter.getItem(i);
+                /*
+
+                Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+
+                intent.putExtra("url", selectedItem.getUrl());
+                startActivity(intent);
+
+                Log.d("TESTING", "Item name selected: "+selectedItem.priceChage);
+                */
+
             }
+
         });
 
+        itemController.addItem(new Item("PS4", "https://www.bestbuy.com/site/sony-playstation-4-pro-console-jet-black/5388900.p?skuId=5388900", 300,0,0));
 
-        //itemController.addItem(new Item("PS4 Pro", "https://www.bestbuy.com/site/sony-playstation-4-pro-console-jet-black/5388900.p?skuId=5388900", 400, 0, 0));
-        //itemController.updateView();
+        itemController.updateView();
     }
 
     /**
@@ -83,12 +123,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void displayItem(String name, double iniPrice, String url, double changePrice, double currPrice){
         listViewAdapter.add(new Item(name, url, iniPrice, currPrice, changePrice));
+        /*
         listViewAdapter.sort(new Comparator<Item>() {
             @Override
             public int compare(Item item, Item t1) {
                 return item.name.compareTo(t1.name);
             }
-        });
+        });*/
         listViewAdapter.notifyDataSetChanged();
     }
 
