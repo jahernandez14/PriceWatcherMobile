@@ -7,7 +7,9 @@ package edu.utep.cs.cs4330.mypricewatcher;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,10 +60,17 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Item selectedItem = listViewAdapter.getItem(i);
+                Log.d("TESTING", "Look in the logs, when item is clicked this is called: "+selectedItem.name);
+            }
+        });
 
 
         //itemController.addItem(new Item("PS4 Pro", "https://www.bestbuy.com/site/sony-playstation-4-pro-console-jet-black/5388900.p?skuId=5388900", 400, 0, 0));
-        itemController.updateView();
+        //itemController.updateView();
     }
 
     /**

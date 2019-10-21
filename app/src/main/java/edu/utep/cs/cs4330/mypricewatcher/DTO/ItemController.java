@@ -35,6 +35,10 @@ public class ItemController {
         updateView();
     }
 
+    public void removeItem(Item item){
+        model.removeItem(item);
+    }
+
     public void updateView(){
         view.clearItems();
        for(int i = 0; i < model.getItemSize(); i ++){
