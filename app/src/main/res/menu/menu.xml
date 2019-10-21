@@ -2,22 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/popDelete"
-        android:icon="@drawable/trash"
         android:title="Delete" />
     <item
         android:id="@+id/popupdate"
-        android:icon="@drawable/trash"
         android:title="Update" />
 
     <item
         android:id="@+id/popEdit"
-        android:icon="@drawable/trash"
         android:title="Edit" />
 
 
     <item
         android:id="@+id/popURL"
-        android:icon="@drawable/trash"
         android:title="Launch URL" />
 
 
