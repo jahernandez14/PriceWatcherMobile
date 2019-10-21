@@ -6,12 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
-import java.util.List;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 import edu.utep.cs.cs4330.mypricewatcher.DTO.Item;
 
@@ -29,7 +28,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
+        NumberFormat format = new DecimalFormat("#0.00");
         Item item = (Item) getItem(position);
 
         if(convertView == null){
@@ -43,10 +42,10 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         TextView priceChangeList = convertView.findViewById(R.id.priceChangeList);
 
         nameList.setText(item.name);
-        urlList.setText(String.valueOf(item.url));
-        initialPriceList.setText(String.valueOf(item.initialPrice));
-        currentPriceList.setText(String.valueOf(item.currentPrice));
-        priceChangeList.setText(String.valueOf(item.priceChage));
+        urlList.setText(item.url);
+        initialPriceList.setText("$" + format.format(item.initialPrice));
+        currentPriceList.setText("$" + format.format(item.currentPrice));
+        priceChangeList.setText(format.format(item.priceChage)+"%");
 
         return convertView;
     }
