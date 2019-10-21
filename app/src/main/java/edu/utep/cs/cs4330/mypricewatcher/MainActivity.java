@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import edu.utep.cs.cs4330.mypricewatcher.DTO.Item;
 import edu.utep.cs.cs4330.mypricewatcher.DTO.ItemController;
@@ -73,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void displayItem(String name, double iniPrice, String url, double changePrice, double currPrice){
         listViewAdapter.add(new Item(name, url, iniPrice, currPrice, changePrice));
-//        listViewAdapter.sort(new Comparator<Item>() {
-//            @Override
-//            public int compare(Item item, Item t1) {
-//                return item.name.compareTo(t1.name);
-//            }
-//        });
+        listViewAdapter.sort(new Comparator<Item>() {
+            @Override
+            public int compare(Item item, Item t1) {
+                return item.name.compareTo(t1.name);
+            }
+        });
         listViewAdapter.notifyDataSetChanged();
     }
 
