@@ -8,6 +8,7 @@ package edu.utep.cs.cs4330.mypricewatcher.View;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -31,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private CustomAdapter listViewAdapter;
     private CustomDialog dialog;
 
-    /**
-     *
-     * @param savedInstanceState
-     */
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Item selectedItem = listViewAdapter.getItem(i);
+                    Log.d("Delete!!! ID: ", selectedItem.getId());
                     PopupMenu pop = new PopupMenu(MainActivity.this, view);
                     pop.inflate(R.menu.menu);
                     pop.show();
@@ -68,13 +66,14 @@ public class MainActivity extends AppCompatActivity {
                                     case R.id.popURL:
                                         Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
                                         intent.putExtra("url", selectedItem.getUrl());
+                                        Log.d("URL!!! ID: ", selectedItem.getUrl());
                                         startActivity(intent);
                                         return true;
                                     case R.id.popEdit:
                                         dialog.show();
                                         return true;
                                     case R.id.popupdate:
-                                        itemController.updatePrice( i);
+                                        //itemController.updatePrice( i);
                                     default:
                                         return false;
                                 }
@@ -83,18 +82,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
         itemController.updateView();
     }
 
-    /**
-     *
-     * @param name
-     * @param iniPrice
-     * @param url
-     * @param changePrice
-     * @param currPrice
-     */
     public void displayItem(String name, double iniPrice, String url, double changePrice, double currPrice){
         listViewAdapter.add(new Item("", name, url, iniPrice, currPrice, changePrice));
         listViewAdapter.notifyDataSetChanged();

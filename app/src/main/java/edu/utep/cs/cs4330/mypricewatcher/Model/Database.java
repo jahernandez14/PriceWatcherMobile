@@ -6,10 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
-
-import java.security.cert.TrustAnchor;
 
 public class Database extends SQLiteOpenHelper {
     public static final String databaseName = "items.db";
@@ -37,7 +34,7 @@ public class Database extends SQLiteOpenHelper {
     onCreate(db);
     }
 
-    public boolean insertData(Item item){
+    public void insertData(Item item){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues content = new ContentValues();
         content.put(col1, item.name);
@@ -45,11 +42,7 @@ public class Database extends SQLiteOpenHelper {
         content.put(col3, item.initialPrice);
         content.put(col4, item.currentPrice);
         content.put(col5, item.priceChange);
-        long result = db.insert(tableName, null, content);
-        if(result == -1){
-            return false;
-        }
-        return true;
+        db.insert(tableName, null, content);
     }
 
     public Cursor getAll(){
@@ -58,8 +51,21 @@ public class Database extends SQLiteOpenHelper {
         return data;
     }
 
-    public Integer deleteData (String id) {
+    public boolean editData(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(tableName, "ID = ?",new String[] {id});
+        ContentValues content = new ContentValues();
+        content.put(col1, item.name);
+        content.put(col2, item.url);
+        content.put(col3, item.initialPrice);
+        content.put(col4, item.currentPrice);
+        content.put(col5, item.priceChange);
+        db.update(tableName, content, "id = ?",new String[] {item.id});
+        return true;
+    }
+
+    public void deleteData (String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(tableName, "id = ?",new String[] {id});
+
     }
 }

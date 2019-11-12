@@ -26,28 +26,28 @@ public class ItemController {
         this.view = view;
         this.priceFinder = new PriceFinder();
     }
-
+/*
     //We are going to use price Finder to update all the prices of the items
     public void updatePrice(int i){
             model.updatePrice(i, priceFinder.createRandom());
         Log.d("TESTING", "update price method called " + priceFinder.createRandom());
         updateView();
-    }
+    }*/
 
     //Adding item to the model
     public void addItem(Item item){
         model.addItem(item);
         updateView();
     }
-
+/*
     public void editItem(int index, String name){
         Item item = model.getItem(index);
         item.setName(name);
         updateView();
-    }
+    }*/
 
     public void removeItem(Item item){
-        model.removeItem(item.id);
+        model.removeItem(item);
         updateView();
     }
 
@@ -58,6 +58,7 @@ public class ItemController {
            Item item = new Item(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getDouble(3), cursor.getDouble(4),cursor.getDouble(5));
            view.displayItem(item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChange(), item.getCurrentPrice());
        }
+       cursor.close();
     }
 
 }
