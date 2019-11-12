@@ -1,4 +1,4 @@
-package edu.utep.cs.cs4330.mypricewatcher;
+package edu.utep.cs.cs4330.mypricewatcher.View;
 
 /**
  * @author Julio A Hernandez
@@ -11,6 +11,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.annotation.Nullable;
+
+import edu.utep.cs.cs4330.mypricewatcher.R;
 
 /**
  * Activity created to display launched web URL

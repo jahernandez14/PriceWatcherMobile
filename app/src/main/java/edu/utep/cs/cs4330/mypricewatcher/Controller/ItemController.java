@@ -1,13 +1,16 @@
-package edu.utep.cs.cs4330.mypricewatcher.DTO;
+package edu.utep.cs.cs4330.mypricewatcher.Controller;
 
 /**
  * @author Julio A Hernandez
  * @version 1.0
  */
 
+import android.database.Cursor;
 import android.util.Log;
 
-import edu.utep.cs.cs4330.mypricewatcher.MainActivity;
+import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
+import edu.utep.cs.cs4330.mypricewatcher.View.MainActivity;
+import edu.utep.cs.cs4330.mypricewatcher.Model.ItemModel;
 
 /**
  * Class created to provide data to item model
@@ -44,15 +47,16 @@ public class ItemController {
     }
 
     public void removeItem(Item item){
-        model.removeItem(item);
+        model.removeItem(item.id);
         updateView();
     }
 
     public void updateView(){
         view.clearItems();
-       for(int i = 0; i < model.getItemSize(); i ++){
-           Item item = model.getItem(i);
-           view.displayItem(item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChage(), item.getCurrentPrice());
+        Cursor cursor = model.getItems();
+       while (cursor.moveToNext()){
+           Item item = new Item(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getDouble(3), cursor.getDouble(4),cursor.getDouble(5));
+           view.displayItem(item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChange(), item.getCurrentPrice());
        }
     }
 

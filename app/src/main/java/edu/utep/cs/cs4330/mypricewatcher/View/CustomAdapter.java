@@ -1,4 +1,4 @@
-package edu.utep.cs.cs4330.mypricewatcher;
+package edu.utep.cs.cs4330.mypricewatcher.View;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
-import edu.utep.cs.cs4330.mypricewatcher.DTO.Item;
+import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
+import edu.utep.cs.cs4330.mypricewatcher.R;
 
 public class CustomAdapter extends ArrayAdapter<Item> {
 
@@ -35,17 +36,17 @@ public class CustomAdapter extends ArrayAdapter<Item> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_layout, parent, false);
         }
 
-        TextView nameList = convertView.findViewById(R.id.nameList);
-        TextView urlList = convertView.findViewById(R.id.urlList);
-        TextView initialPriceList = convertView.findViewById(R.id.initialPriceList);
-        TextView currentPriceList = convertView.findViewById(R.id.currentPriceList);
-        TextView priceChangeList = convertView.findViewById(R.id.priceChangeList);
+        TextView name = convertView.findViewById(R.id.name);
+        TextView url = convertView.findViewById(R.id.url);
+        TextView initialPrice = convertView.findViewById(R.id.initialPrice);
+        TextView currentPrice = convertView.findViewById(R.id.currentPrice);
+        TextView priceChange = convertView.findViewById(R.id.priceChange);
 
-        nameList.setText(item.name);
-        urlList.setText(item.url);
-        initialPriceList.setText("$" + format.format(item.initialPrice));
-        currentPriceList.setText("$" + format.format(item.currentPrice));
-        priceChangeList.setText(format.format(item.priceChage)+"%");
+        name.setText(item.name);
+        url.setText(item.url);
+        initialPrice.setText("$" + format.format(item.initialPrice));
+        currentPrice.setText("$" + format.format(item.currentPrice));
+        priceChange.setText(format.format(item.priceChange)+"%");
 
         return convertView;
     }

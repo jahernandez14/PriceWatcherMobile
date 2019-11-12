@@ -1,4 +1,4 @@
-package edu.utep.cs.cs4330.mypricewatcher.DTO;
+package edu.utep.cs.cs4330.mypricewatcher.Model;
 
 /**
  * @author Julio A Hernandez
@@ -9,11 +9,12 @@ package edu.utep.cs.cs4330.mypricewatcher.DTO;
  * Object class to store item information
  */
 public class Item {
+    public String id;
     public String name;
     public String url;
     public double initialPrice;
     public double currentPrice;
-    public double priceChage;
+    public double priceChange;
 
     /**
      *
@@ -21,14 +22,15 @@ public class Item {
      * @param url
      * @param initialPrice
      * @param currentPrice
-     * @param priceChage
+     * @param priceChange
      */
-    public Item(String name, String url, double initialPrice, double currentPrice, double priceChage){
+    public Item(String id, String name, String url, double initialPrice, double currentPrice, double priceChange){
+        this.id = id;
         this.name = name;
         this.url = url;
         this.initialPrice = initialPrice;
         this.currentPrice = initialPrice;
-        this.priceChage = priceChage;
+        this.priceChange = priceChange;
     }
 
     public String getName() {
@@ -63,11 +65,18 @@ public class Item {
         this.currentPrice = currentPrice;
     }
 
-    public double getPriceChage() {
-        return priceChage;
+    public double getPriceChange() {
+        return priceChange;
     }
 
-    public void setPriceChage(double priceChage) {
-        this.priceChage = priceChage;
+    public void setPriceChange(double priceChange) {
+        this.priceChange = priceChange;
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

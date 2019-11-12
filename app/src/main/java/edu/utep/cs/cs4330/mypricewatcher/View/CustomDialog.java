@@ -1,4 +1,4 @@
-package edu.utep.cs.cs4330.mypricewatcher;
+package edu.utep.cs.cs4330.mypricewatcher.View;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -8,19 +8,18 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import edu.utep.cs.cs4330.mypricewatcher.DTO.Item;
-import edu.utep.cs.cs4330.mypricewatcher.DTO.ItemController;
+import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
+import edu.utep.cs.cs4330.mypricewatcher.Controller.ItemController;
+import edu.utep.cs.cs4330.mypricewatcher.R;
 
 public class CustomDialog extends Dialog implements View.OnClickListener {
 
-    private Activity activity;
-    private TextView itemName, itemInitPrice, itemUrl;
-    private Button cancelBtn, addBtn;
+    private TextView name, initialPrice, url;
+    private Button cancel, add;
     private ItemController itemController;
 
     public CustomDialog(Activity activity, ItemController itemController) {
         super(activity);
-        this.activity = activity;
         this.itemController = itemController;
     }
 
@@ -29,32 +28,27 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_layout);
-
-        itemName = findViewById(R.id.itemName);
-        itemInitPrice = findViewById(R.id.itemInitPrice);
-        itemUrl = findViewById(R.id.ItemURL);
-        cancelBtn = findViewById(R.id.CancelButton);
-        addBtn = findViewById(R.id.AddButton);
-
-        cancelBtn.setOnClickListener(this);
-        addBtn.setOnClickListener(this);
-
+        name = findViewById(R.id.name);
+        initialPrice = findViewById(R.id.initialPrice);
+        url = findViewById(R.id.url);
+        cancel = findViewById(R.id.cancel);
+        add = findViewById(R.id.add);
+        cancel.setOnClickListener(this);
+        add.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.AddButton:
+            case R.id.add:
                 //we are going to add the element to the listview
-                double price = Double.valueOf(String.valueOf(itemInitPrice.getText()));
-                Item item = new Item(itemName.getText().toString(), "https://" +
-                        itemUrl.getText().toString(),
+                double price = Double.valueOf(String.valueOf(initialPrice.getText()));
+                Item item = new Item("", name.getText().toString(), "https://" +
+                        url.getText().toString(),
                         price,
                         price, 0.0);
                 itemController.addItem(item);
-            case R.id.CancelButton:
-                //we are going to cancel the dialog
+            case R.id.cancel:
                 dismiss();
         }
     }

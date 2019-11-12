@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:background="@drawable/blue"
-tools:context=".MainActivity">
+tools:context=".View.MainActivity">
 
 <ListView
     android:id="@+id/list"
