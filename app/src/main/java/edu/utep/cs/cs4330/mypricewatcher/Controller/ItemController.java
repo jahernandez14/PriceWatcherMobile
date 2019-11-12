@@ -56,7 +56,7 @@ public class ItemController {
         Cursor cursor = model.getItems();
        while (cursor.moveToNext()){
            Item item = new Item(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getDouble(3), cursor.getDouble(4),cursor.getDouble(5));
-           view.displayItem(item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChange(), item.getCurrentPrice());
+           view.displayItem(item.getId(), item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChange(), item.getCurrentPrice());
        }
        cursor.close();
     }

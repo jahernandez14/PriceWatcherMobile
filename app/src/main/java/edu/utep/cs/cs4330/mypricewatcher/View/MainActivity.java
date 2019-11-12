@@ -2,7 +2,7 @@ package edu.utep.cs.cs4330.mypricewatcher.View;
 
 /**
  * @author Julio A Hernandez
- * @version 1.0
+ * @version 3.0
  */
 
 import android.annotation.SuppressLint;
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Item selectedItem = listViewAdapter.getItem(i);
-                    Log.d("Delete!!! ID: ", selectedItem.getId());
                     PopupMenu pop = new PopupMenu(MainActivity.this, view);
                     pop.inflate(R.menu.menu);
                     pop.show();
@@ -85,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
         itemController.updateView();
     }
 
-    public void displayItem(String name, double iniPrice, String url, double changePrice, double currPrice){
-        listViewAdapter.add(new Item("", name, url, iniPrice, currPrice, changePrice));
+    public void displayItem(String id, String name, double iniPrice, String url, double changePrice, double currPrice){
+        listViewAdapter.add(new Item(id, name, url, iniPrice, currPrice, changePrice));
         listViewAdapter.notifyDataSetChanged();
     }
 
