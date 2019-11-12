@@ -15,12 +15,12 @@ import java.text.DecimalFormat;
 import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
 import edu.utep.cs.cs4330.mypricewatcher.R;
 
-public class CustomAdapter extends ArrayAdapter<Item> {
+public class ItemViewAdapter extends ArrayAdapter<Item> {
 
     private Context context;
     private ArrayList<Item> items = new ArrayList<>();
 
-    CustomAdapter(@NonNull Context context, int resource,  ArrayList<Item> objects) {
+    ItemViewAdapter(@NonNull Context context, int resource, ArrayList<Item> objects) {
         super(context, resource, objects);
         this.context = context;
         this.items = objects;

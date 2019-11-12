@@ -5,6 +5,7 @@ package edu.utep.cs.cs4330.mypricewatcher.Controller;
  * @version 1.0
  */
 
+import android.content.ClipData;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -39,12 +40,11 @@ public class ItemController {
         model.addItem(item);
         updateView();
     }
-/*
-    public void editItem(int index, String name){
-        Item item = model.getItem(index);
-        item.setName(name);
+
+    public void editItem(Item item){
+        model.editItem(item);
         updateView();
-    }*/
+    }
 
     public void removeItem(Item item){
         model.removeItem(item);
@@ -56,7 +56,7 @@ public class ItemController {
         Cursor cursor = model.getItems();
        while (cursor.moveToNext()){
            Item item = new Item(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getDouble(3), cursor.getDouble(4),cursor.getDouble(5));
-           view.displayItem(item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChange(), item.getCurrentPrice());
+           view.displayItem(item.getId(), item.getName(), item.getInitialPrice(), item.getUrl(), item.getPriceChange(), item.getCurrentPrice());
        }
        cursor.close();
     }

@@ -56,9 +56,6 @@ public class Database extends SQLiteOpenHelper {
         ContentValues content = new ContentValues();
         content.put(col1, item.name);
         content.put(col2, item.url);
-        content.put(col3, item.initialPrice);
-        content.put(col4, item.currentPrice);
-        content.put(col5, item.priceChange);
         db.update(tableName, content, "id = ?",new String[] {item.id});
         return true;
     }

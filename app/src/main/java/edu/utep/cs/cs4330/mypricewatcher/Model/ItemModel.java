@@ -50,8 +50,11 @@ public class ItemModel {
 
     public void removeItem(Item item) {
         this.db.deleteData(item.id);
-
         }
+
+    public void editItem(Item item) {
+        this.db.editData(item);
+    }
 /*
     public Item getItem(int index){
         return items.get(index);

@@ -2,7 +2,7 @@ package edu.utep.cs.cs4330.mypricewatcher.View;
 
 /**
  * @author Julio A Hernandez
- * @version 1.0
+ * @version 3.0
  */
 
 import android.annotation.SuppressLint;
@@ -29,8 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private ItemController itemController;
     private ListView listView;
     private FloatingActionButton floatingActionButton;
-    private CustomAdapter listViewAdapter;
-    private CustomDialog dialog;
+    private ItemViewAdapter listViewAdapter;
+    private ItemAddDialog addDialog;
+    private ItemEditDialog editDialog;
 
     @SuppressLint("ResourceType")
     @Override
@@ -38,22 +39,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         itemController = new ItemController(new ItemModel(this), this);
-        listViewAdapter = new CustomAdapter(this, android.R.layout.simple_list_item_1, new ArrayList<Item>());
-        this.dialog = new CustomDialog(this, itemController);
+        listViewAdapter = new ItemViewAdapter(this, android.R.layout.simple_list_item_1, new ArrayList<Item>());
+        this.addDialog = new ItemAddDialog(this, itemController);
+        this.editDialog = new ItemEditDialog(this, itemController);
         listView = findViewById(R.id.list);
         listView.setAdapter(listViewAdapter);
         floatingActionButton = findViewById(R.id.add);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
+                addDialog.show();
             }
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Item selectedItem = listViewAdapter.getItem(i);
-                    Log.d("Delete!!! ID: ", selectedItem.getId());
                     PopupMenu pop = new PopupMenu(MainActivity.this, view);
                     pop.inflate(R.menu.menu);
                     pop.show();
@@ -70,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
                                         startActivity(intent);
                                         return true;
                                     case R.id.popEdit:
-                                        dialog.show();
+                                        editDialog.itemSelected(selectedItem);
+                                        editDialog.show();
                                         return true;
                                     case R.id.popupdate:
                                         //itemController.updatePrice( i);
@@ -85,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
         itemController.updateView();
     }
 
-    public void displayItem(String name, double iniPrice, String url, double changePrice, double currPrice){
-        listViewAdapter.add(new Item("", name, url, iniPrice, currPrice, changePrice));
+    public void displayItem(String id, String name, double iniPrice, String url, double changePrice, double currPrice){
+        listViewAdapter.add(new Item(id, name, url, iniPrice, currPrice, changePrice));
         listViewAdapter.notifyDataSetChanged();
     }
 
