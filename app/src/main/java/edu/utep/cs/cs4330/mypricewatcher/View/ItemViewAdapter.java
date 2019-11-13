@@ -1,10 +1,12 @@
 package edu.utep.cs.cs4330.mypricewatcher.View;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,12 +43,21 @@ public class ItemViewAdapter extends ArrayAdapter<Item> {
         TextView initialPrice = convertView.findViewById(R.id.initialPrice);
         TextView currentPrice = convertView.findViewById(R.id.currentPrice);
         TextView priceChange = convertView.findViewById(R.id.priceChange);
+        ImageView imageView = convertView.findViewById(R.id.img);
 
         name.setText(item.name);
         url.setText(item.url);
         initialPrice.setText("$" + format.format(item.initialPrice));
         currentPrice.setText("$" + format.format(item.currentPrice));
         priceChange.setText(format.format(item.priceChange)+"%");
+
+        if(item.url.substring(12,21).equals("homedepot")){
+            imageView.setImageResource(R.drawable.home);
+        }
+
+        if(item.url.substring(12,19).equals("walmart")){
+            imageView.setImageResource(R.drawable.wal);
+        }
 
         return convertView;
     }
