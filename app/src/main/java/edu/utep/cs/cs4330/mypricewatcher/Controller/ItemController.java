@@ -30,9 +30,20 @@ public class ItemController {
     public void updatePrice(Item item){
 
         item.setInitialPrice(item.getCurrentPrice());
-        item.setCurrentPrice(priceFinder.createRandom());
-        item.setPriceChange(priceChange(item));
-        model.updatePrice(item);
+        new Thread(new Runnable() {
+            public void run() {
+                item.setCurrentPrice(priceFinder.urlPrice(item.getUrl()));
+                item.setPriceChange(priceChange(item));
+                model.updatePrice(item);
+                Log.d("result","" + item.currentPrice);
+            }
+        }).start();
+
+        Log.d("result","" + item.currentPrice);
+        //item.setCurrentPrice(priceFinder.urlPrice(item.getUrl()));
+
+        //item.setCurrentPrice(priceFinder.createRandom());
+        new Network().sleep();
         updateView();
     }
 

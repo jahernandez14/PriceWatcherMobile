@@ -6,7 +6,6 @@ package edu.utep.cs.cs4330.mypricewatcher.Controller;
  */
 
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -18,7 +17,6 @@ public class PriceFinder {
     private double price;
 
     public PriceFinder() {
-
     }
 
     public double urlPrice(String url){
@@ -36,14 +34,8 @@ public class PriceFinder {
                 return price;
             }
 
-            else if(url.substring(12,16).equals("ebay")) {
-                pattern = Pattern.compile("content=\"\\d+[\\.]\\d+\\d");
-                price = reader(url,pattern);
-                return price;
-            }
         }
         catch (Exception e) {
-            Log.d("Price Calculated", "not found");
         }
         return price;
     }

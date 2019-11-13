@@ -6,16 +6,24 @@ package edu.utep.cs.cs4330.mypricewatcher.View;
  */
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
+
+import edu.utep.cs.cs4330.mypricewatcher.Controller.Network;
 import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
 import edu.utep.cs.cs4330.mypricewatcher.Model.ItemModel;
 import edu.utep.cs.cs4330.mypricewatcher.Controller.ItemController;
@@ -46,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         listView.setAdapter(listViewAdapter);
         floatingActionButton = findViewById(R.id.add);
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,5 +103,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void clearItems(){
         listViewAdapter.clear();
+        boolean flag = true;
+
+        ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+
+        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
+            Toast.makeText(this, "No Internet connection!", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
+            flag = false;
+        flag = true;
+        }
     }
 }
