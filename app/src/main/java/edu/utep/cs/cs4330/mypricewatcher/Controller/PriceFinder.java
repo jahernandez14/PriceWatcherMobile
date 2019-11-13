@@ -3,6 +3,7 @@ package edu.utep.cs.cs4330.mypricewatcher.Controller;
 /**
  * @author Julio A Hernandez
  * @version 3.0
+ * Used to find prices via the web
  */
 
 import android.util.Log;

@@ -13,6 +13,10 @@ import edu.utep.cs.cs4330.mypricewatcher.Controller.PriceFinder;
 import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
 import edu.utep.cs.cs4330.mypricewatcher.R;
 
+/**
+ * @author Julio Hernandez
+ * Class was created to provide a edit dialog when editing items
+ */
 public class ItemEditDialog extends Dialog implements View.OnClickListener {
 
     private TextView name, url;

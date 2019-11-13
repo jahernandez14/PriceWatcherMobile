@@ -2,7 +2,7 @@ package edu.utep.cs.cs4330.mypricewatcher.Model;
 
 /**
  * @author Julio A Hernandez
- * @version 1.0
+ * @version 3.0
  */
 
 import android.content.Context;

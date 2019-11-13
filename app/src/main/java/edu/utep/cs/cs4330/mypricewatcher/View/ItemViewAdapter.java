@@ -1,7 +1,6 @@
 package edu.utep.cs.cs4330.mypricewatcher.View;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,10 @@ import java.text.DecimalFormat;
 import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
 import edu.utep.cs.cs4330.mypricewatcher.R;
 
+/**
+ * @author Julio Hernandez
+ * Class created to provide a detailed list of each item
+ */
 public class ItemViewAdapter extends ArrayAdapter<Item> {
 
     private Context context;

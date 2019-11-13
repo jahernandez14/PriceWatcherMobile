@@ -18,6 +18,10 @@ import edu.utep.cs.cs4330.mypricewatcher.R;
 
 import static android.widget.Toast.LENGTH_LONG;
 
+/**
+ * @author Juilio Hernandez
+ * Dialog created to add items to list
+ */
 public class ItemAddDialog extends Dialog implements View.OnClickListener {
 
     private TextView name, url;
@@ -51,7 +55,6 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener {
                 new Thread(new Runnable() {
                     public void run() {
                         price = new PriceFinder().urlPrice(url.getText().toString());
-                        Log.d("result","" + price);
                     }
                 }).start();
 
@@ -60,14 +63,12 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener {
                         url.getText().toString(),
                         price,
                         price, 0.0);
-                Log.d("Test Add", "" + price);
                 if(price>0) {
                     itemController.addItem(item);
                 }
                 if(price<1){
                     Toast.makeText(getContext(), "Invalid URL! Try Again!", LENGTH_LONG).show();
                 }
-
             case R.id.cancel:
                 dismiss();
         }

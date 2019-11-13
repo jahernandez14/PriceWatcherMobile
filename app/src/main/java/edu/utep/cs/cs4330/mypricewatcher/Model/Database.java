@@ -10,6 +10,10 @@ import androidx.annotation.Nullable;
 
 import edu.utep.cs.cs4330.mypricewatcher.Controller.PriceFinder;
 
+/**
+ * @author Julio Hernandez
+ * SQL Lite Database implemented
+ */
 public class Database extends SQLiteOpenHelper {
     public static final String databaseName = "items.db";
     public static final String tableName = "itemTable";

@@ -6,8 +6,6 @@ package edu.utep.cs.cs4330.mypricewatcher.Controller;
  */
 
 import android.database.Cursor;
-import android.util.Log;
-
 import edu.utep.cs.cs4330.mypricewatcher.Model.Item;
 import edu.utep.cs.cs4330.mypricewatcher.View.MainActivity;
 import edu.utep.cs.cs4330.mypricewatcher.Model.ItemModel;
@@ -35,14 +33,8 @@ public class ItemController {
                 item.setCurrentPrice(priceFinder.urlPrice(item.getUrl()));
                 item.setPriceChange(priceChange(item));
                 model.updatePrice(item);
-                Log.d("result","" + item.currentPrice);
             }
         }).start();
-
-        Log.d("result","" + item.currentPrice);
-        //item.setCurrentPrice(priceFinder.urlPrice(item.getUrl()));
-
-        //item.setCurrentPrice(priceFinder.createRandom());
         new Network().sleep();
         updateView();
     }
