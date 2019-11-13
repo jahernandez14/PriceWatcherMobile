@@ -29,7 +29,7 @@ public class Item {
         this.name = name;
         this.url = url;
         this.initialPrice = initialPrice;
-        this.currentPrice = initialPrice;
+        this.currentPrice = currentPrice;
         this.priceChange = priceChange;
     }
 

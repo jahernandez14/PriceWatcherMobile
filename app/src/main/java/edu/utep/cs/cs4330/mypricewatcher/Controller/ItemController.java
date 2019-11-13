@@ -2,10 +2,9 @@ package edu.utep.cs.cs4330.mypricewatcher.Controller;
 
 /**
  * @author Julio A Hernandez
- * @version 1.0
+ * @version 3.0
  */
 
-import android.content.ClipData;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -27,15 +26,22 @@ public class ItemController {
         this.view = view;
         this.priceFinder = new PriceFinder();
     }
-/*
-    //We are going to use price Finder to update all the prices of the items
-    public void updatePrice(int i){
-            model.updatePrice(i, priceFinder.createRandom());
-        Log.d("TESTING", "update price method called " + priceFinder.createRandom());
-        updateView();
-    }*/
 
-    //Adding item to the model
+    public void updatePrice(Item item){
+
+        item.setInitialPrice(item.getCurrentPrice());
+        item.setCurrentPrice(priceFinder.createRandom());
+        item.setPriceChange(priceChange(item));
+        model.updatePrice(item);
+        updateView();
+    }
+
+    public double priceChange(Item item){
+        double priceChange;
+        priceChange =  (((item.currentPrice - item.initialPrice) / item.initialPrice) * 100);
+        return priceChange;
+    }
+
     public void addItem(Item item){
         model.addItem(item);
         updateView();

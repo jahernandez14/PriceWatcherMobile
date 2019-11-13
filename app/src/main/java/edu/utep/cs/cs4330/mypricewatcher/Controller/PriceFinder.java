@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
 public class PriceFinder {
     private double price;
@@ -62,5 +63,14 @@ public class PriceFinder {
         }
         in.close();
         return price;
+    }
+
+    public double createRandom() {
+        double min = 250;
+        double max = 400;
+
+        Random random = new Random();
+        double holder = min + (max - min) * random.nextDouble();
+        return Math.round(holder * 100.00) / 100.0;
     }
 }

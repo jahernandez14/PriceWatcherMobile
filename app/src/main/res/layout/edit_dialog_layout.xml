@@ -3,12 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     >
-    <ImageView
+
+    <TextView
+        android:text="  Edit Item"
+        android:textSize="40sp"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:scaleType="center"
-        android:background="#AA4400"
-        android:contentDescription="@string/app_name" />
+        android:background="#AA4400"/>
     <EditText
         android:id="@+id/name"
         android:inputType = "text"

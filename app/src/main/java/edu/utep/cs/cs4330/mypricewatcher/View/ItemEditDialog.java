@@ -45,8 +45,12 @@ public class ItemEditDialog extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.edit:
-                item.setName(name.getText().toString());
-                item.setUrl(url.getText().toString());
+                if(name.getText().toString().length() > 1) {
+                    item.setName(name.getText().toString());
+                }
+                if(url.getText().toString().length() > 1) {
+                    item.setUrl(url.getText().toString());
+                }
                 itemController.editItem(item);
             case R.id.cancel:
                 dismiss();

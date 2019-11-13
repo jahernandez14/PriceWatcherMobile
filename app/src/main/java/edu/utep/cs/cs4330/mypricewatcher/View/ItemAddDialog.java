@@ -41,7 +41,7 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add:
-                double price = new PriceFinder().urlPrice(url.getText().toString());
+                double price = new PriceFinder().createRandom();
                 Item item = new Item("", name.getText().toString(),
                         url.getText().toString(),
                         price,

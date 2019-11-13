@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ItemViewAdapter listViewAdapter;
     private ItemAddDialog addDialog;
     private ItemEditDialog editDialog;
+    private Item selectedItem;
 
     @SuppressLint("ResourceType")
     @Override
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Item selectedItem = listViewAdapter.getItem(i);
+                    selectedItem = listViewAdapter.getItem(i);
                     PopupMenu pop = new PopupMenu(MainActivity.this, view);
                     pop.inflate(R.menu.menu);
                     pop.show();
@@ -67,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                                     case R.id.popURL:
                                         Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
                                         intent.putExtra("url", selectedItem.getUrl());
-                                        Log.d("URL!!! ID: ", selectedItem.getUrl());
                                         startActivity(intent);
                                         return true;
                                     case R.id.popEdit:
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                         editDialog.show();
                                         return true;
                                     case R.id.popupdate:
-                                        //itemController.updatePrice( i);
+                                        itemController.updatePrice(selectedItem);
                                     default:
                                         return false;
                                 }
